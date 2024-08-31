@@ -85,7 +85,7 @@ spec:
       nfs-nas-media:
         type: nfs
         server: gladius.bjw-s.casa
-        path: /tank/Media
+        path: /eros/Media
         advancedMounts:
           main:
             main:

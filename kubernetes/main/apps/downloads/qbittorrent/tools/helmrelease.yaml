@@ -151,7 +151,7 @@ spec:
       media:
         type: nfs
         server: pve1.nickeson.net
-        path: /tank/Media
+        path: /eros/Media
         advancedMounts:
           orphaned:
             app:
