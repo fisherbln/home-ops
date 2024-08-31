@@ -30,7 +30,7 @@ spec:
               repository: wallabag/wallabag
               tag: 2.6.9
             env:
-              SYMFONY__ENV__DOMAIN_NAME: https://wallabag.bjw-s.dev
+              SYMFONY__ENV__DOMAIN_NAME: https://wallabag.nickeson.net
               SYMFONY__ENV__SERVER_NAME: Wallabag
               SYMFONY__ENV__FOSUSER_REGISTRATION: "false"
               SYMFONY__ENV__FOSUSER_CONFIRMATION: "false"
@@ -68,7 +68,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress-ext.nickeson.net
         hosts:
-          - host: wallabag.bjw-s.dev
+          - host: wallabag.nickeson.net
             paths:
               - path: /
                 service:
