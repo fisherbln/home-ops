@@ -30,7 +30,7 @@ spec:
       - n8n
 
     env:
-      GENERIC_TIMEZONE: "Europe/Amsterdam"
+      GENERIC_TIMEZONE: "America/Chicago"
       N8N_PROTOCOL: "https"
       N8N_PORT: &port 8080
       N8N_HOST: "n8n.bjw-s.dev"
