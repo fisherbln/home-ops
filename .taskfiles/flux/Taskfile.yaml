@@ -62,3 +62,10 @@ tasks:
         msg: "Kustomization file {{.kustomization_file}} not found"
       - sh: kubectl config get-contexts {{.cluster}}
         msg: "Kubectl context {{.cluster}} not found"
+  
+  reconcile:
+    desc: Force update Flux to pull in changes from your Git repository
+    cmd: flux --context {{.cluster}} reconcile --namespace flux-system kustomization cluster --with-source
+    #preconditions:
+    #  - msg: Missing kubeconfig
+    #    sh: test -f {{.KUBECONFIG_FILE}}
