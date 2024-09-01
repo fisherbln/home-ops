@@ -47,13 +47,13 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        vlans:
-          - &vlan100
-            vlanId: 100
-            mtu: 1500
-            dhcp: true
-            dhcpOptions:
-              routeMetric: 4096
+        #vlans:
+        #  - &vlan100
+        #    vlanId: 20
+        #    mtu: 1500
+        #    dhcp: true
+        #    dhcpOptions:
+        #      routeMetric: 4096
   - hostname: enigma.${NET_DOMAIN_NAME}
     ipAddress: 10.28.28.62
     controlPlane: true
@@ -76,8 +76,8 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        vlans:
-          - *vlan100
+        #vlans:
+        #  - *vlan100
   - hostname: felix.${NET_DOMAIN_NAME}
     ipAddress: 10.28.28.63
     controlPlane: true
@@ -98,8 +98,8 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        vlans:
-          - *vlan100
+        #vlans:
+        #  - *vlan100
 
 controlPlane:
   schematic:
