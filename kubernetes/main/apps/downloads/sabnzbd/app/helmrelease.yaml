@@ -142,11 +142,11 @@ spec:
             app:
               - path: /incomplete
                 subPath: incomplete
-      scripts:
-        type: configMap
-        name: sabnzbd-scripts
-        defaultMode: 0775
-        advancedMounts:
-          sabnzbd:
-            app:
-              - path: /config/scripts
+      #scripts:
+      #  type: configMap
+      #  name: sabnzbd-scripts
+      #  defaultMode: 0775
+      #  advancedMounts:
+      #    sabnzbd:
+      #      app:
+      #        - path: /config/scripts
