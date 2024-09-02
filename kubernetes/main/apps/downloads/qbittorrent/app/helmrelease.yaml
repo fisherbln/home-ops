@@ -39,6 +39,10 @@ spec:
             env:
               UMASK: "022"
               QBITTORRENT__PORT: &port 8080
+              QBT_Preferences__WebUI__AlternativeUIEnabled: false
+              QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
+              QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
+                10.244.0.0/16, 10.28.0.0/16
               #XSEED_HOST: cross-seed.downloads.svc.cluster.local
               #XSEED_PORT: 2468
               #XSEED_APIKEY:
