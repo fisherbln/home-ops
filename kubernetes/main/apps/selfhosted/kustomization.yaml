@@ -7,11 +7,11 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   #- ./actual/ks.yaml
-  - ./atuin/ks.yaml
+  #- ./atuin/ks.yaml
   #- ./maker-management-platform/ks.yaml
-  - ./miniflux/ks.yaml
+  #- ./miniflux/ks.yaml
   #- ./node-red/ks.yaml
   #- ./ocis/ks.yaml
   - ./paperless/ks.yaml
   #- ./radicale/ks.yaml
-  - ./wallabag/ks.yaml
+  #- ./wallabag/ks.yaml
