@@ -64,7 +64,7 @@ spec:
 
     service:
       app:
-        controller: overseer
+        controller: overseerr
         ports:
           http:
             port: *port
