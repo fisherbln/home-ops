@@ -174,11 +174,11 @@ spec:
               - path: /etc/dnsdist/dnsdist.conf
                 subPath: dnsdist.conf
                 readOnly: true
-      scripts:
-        type: configMap
-        name: qbittorrent-scripts
-        defaultMode: 0775
-        advancedMounts:
-          qbittorrent:
-            app:
-              - path: /config/scripts
+      #scripts:
+      #  type: configMap
+      #  name: qbittorrent-scripts
+      #  defaultMode: 0775
+      #  advancedMounts:
+      #    qbittorrent:
+      #      app:
+      #        - path: /config/scripts
