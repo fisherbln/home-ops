@@ -14,4 +14,4 @@ resources:
   #- ./ocis/ks.yaml
   - ./paperless/ks.yaml
   #- ./radicale/ks.yaml
-  - ./wallabag/ks.yaml
+  #- ./wallabag/ks.yaml
