@@ -6,6 +6,14 @@ vars:
   TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
 
 tasks:
+  shell:
+    desc: "Open a Debug Shell on a Specific Node"
+    cmds:
+      - kubectl debug -n kube-system -it --image alpine node/{{.node}}
+    requires:
+      vars:
+        #- cluster
+        - node
   gen-secrets:
     desc: "Generate cluster secrets"
     cmds:
