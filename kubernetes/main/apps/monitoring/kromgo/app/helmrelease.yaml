@@ -89,7 +89,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress-ext.nickeson.net
         hosts:
-          - host: kromgo.bjw-s.dev
+          - host: kromgo.nickeson.net
             paths:
               - path: /
                 service:
