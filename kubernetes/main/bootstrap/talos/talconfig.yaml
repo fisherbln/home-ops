@@ -40,22 +40,25 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: e8:ff:1e:d2:b0:be
-          driver: igc
-        mtu: 1500
+      #- deviceSelector:
+      #    hardwareAddr: e8:ff:1e:d2:b0:be
+      #    driver: igc
+      #  mtu: 1500
+      #  dhcp: true
+      #  vip:
+      #    ip: ${clusterEndpointIP}
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: e8:ff:1e:d2:b0:be
+              driver: igc
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        #vlans:
-        #  - &vlan100
-        #    vlanId: 20
-        #    mtu: 1500
-        #    dhcp: true
-        #    dhcpOptions:
-        #      routeMetric: 4096
-      - interface: bond0
+      - interface: bond1
         bond:
+          mode: active-backup
           deviceSelectors: 
             - hardwareAddr: e8:ff:1e:d2:b0:bd
               driver: igc
@@ -76,18 +79,26 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      - deviceSelector:
-          #hardwareAddr: BC:24:11:0E:02:A9
-          #driver: virtio
-          hardwareAddr: 58:47:ca:74:f2:59
-        mtu: 1500
+      #- deviceSelector:
+      #    #hardwareAddr: BC:24:11:0E:02:A9
+      #    #driver: virtio
+      #    hardwareAddr: 58:47:ca:74:f2:59
+      #  mtu: 1500
+      #  dhcp: true
+      #  vip:
+      #    ip: ${clusterEndpointIP}
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: 58:47:ca:74:f2:59
+              driver: igc
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        #vlans:
-        #  - *vlan100
-      - interface: bond0
+      - interface: bond1
         bond:
+          mode: active-backup
           deviceSelectors: 
             - hardwareAddr: 58:47:ca:74:f2:5c
               driver: igc
@@ -106,17 +117,25 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: 58:47:ca:74:ff:71
-          #driver: virtio
-        mtu: 1500
+      #- deviceSelector:
+      #    hardwareAddr: 58:47:ca:74:ff:71
+      #    #driver: virtio
+      #  mtu: 1500
+      #  dhcp: true
+      #  vip:
+      #    ip: ${clusterEndpointIP}
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: 58:47:ca:74:ff:71
+              driver: igc
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-        #vlans:
-        #  - *vlan100
-      - interface: bond0
+      - interface: bond1
         bond:
+          mode: active-backup
           deviceSelectors: 
             - hardwareAddr: 58:47:ca:74:ff:74
               driver: igc
