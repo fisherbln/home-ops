@@ -29,10 +29,6 @@ nodes:
     ipAddress: 10.28.28.61
     controlPlane: true
     installDisk: /dev/disk/by-id/usb-FORESEE_512GB_SSD_012938002E42-0:0
-    #installDiskSelector:
-    ##  size: "<= 2560GB"
-    ##  model: "Samsung*"
-    #  model: "512GB SSD"
     #nameservers: 
     #  - 10.28.1.1
     machineDisks:
@@ -69,8 +65,6 @@ nodes:
     ipAddress: 10.28.28.62
     controlPlane: true
     installDiskSelector:
-    #  size: "<= 2560GB"
-    #  model: "Samsung*"
       serial: "22293BED94F5"
     #nameservers: 
     #  - 10.28.1.1
@@ -92,7 +86,7 @@ nodes:
           mode: active-backup
           deviceSelectors: 
             - hardwareAddr: 58:47:ca:74:f2:59
-              driver: igc
+              #driver: igc
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
@@ -108,7 +102,6 @@ nodes:
     ipAddress: 10.28.28.63
     controlPlane: true
     installDiskSelector:
-    #  size: "<= 2560GB"
       serial: "2231402813ED"
   #  nameservers: 
   #    - 10.28.1.1
@@ -129,7 +122,7 @@ nodes:
           mode: active-backup
           deviceSelectors: 
             - hardwareAddr: 58:47:ca:74:ff:71
-              driver: igc
+              #driver: igc
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
