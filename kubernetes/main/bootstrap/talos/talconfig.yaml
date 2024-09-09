@@ -52,14 +52,14 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-      #- interface: bond1
-      #  bond:
-      #    mode: active-backup
-      #    deviceSelectors: 
-      #      - hardwareAddr: e8:ff:1e:d2:b0:bd
-      #        driver: igc
-      #  mtu: 1500
-      #  dhcp: true
+      - interface: bond1
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: e8:ff:1e:d2:b0:bd
+              driver: igc
+        mtu: 1500
+        dhcp: true
         
   - hostname: enigma.${NET_DOMAIN_NAME}
     ipAddress: 10.28.28.62
@@ -90,14 +90,14 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-      #- interface: bond1
-      #  bond:
-      #    mode: active-backup
-      #    deviceSelectors: 
-      #      - hardwareAddr: 58:47:ca:74:f2:5c
-      #        driver: igc
-      #  mtu: 1500
-      #  dhcp: true
+      - interface: bond1
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: 58:47:ca:74:f2:5c
+              driver: igc
+        mtu: 1500
+        dhcp: true
   - hostname: felix.${NET_DOMAIN_NAME}
     ipAddress: 10.28.28.63
     controlPlane: true
@@ -126,14 +126,14 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
-      #- interface: bond1
-      #  bond:
-      #    mode: active-backup
-      #    deviceSelectors: 
-      #      - hardwareAddr: 58:47:ca:74:ff:74
-      #        driver: igc
-      #  mtu: 1500
-      #  dhcp: true
+      - interface: bond1
+        bond:
+          mode: active-backup
+          deviceSelectors: 
+            - hardwareAddr: 58:47:ca:74:ff:74
+              driver: igc
+        mtu: 1500
+        dhcp: true
 
 controlPlane:
   schematic:
