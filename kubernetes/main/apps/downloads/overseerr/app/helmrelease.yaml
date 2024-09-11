@@ -88,7 +88,13 @@ spec:
           overseerr:
             app:
               - path: /app/config
+      cache:
+        existingClaim: overseerr-cache
+        globalMounts:
+          - path: /app/config/cache
       logs:
         type: emptyDir
         globalMounts:
           - path: /app/config/logsmain
+      tmp:
+        type: emptyDir
