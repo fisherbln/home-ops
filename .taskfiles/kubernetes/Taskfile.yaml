@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  delete-failed-pods:
+    desc: Deletes pods with a fucked status
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    cmds:
+      - for: ["Evicted", "Failed", "Succeeded"]
+        cmd: kubectl --context {{.cluster}} delete pods --field-selector status.phase={{.ITEM}} -A --ignore-not-found=true
+    requires:
+      vars:
+        - cluster
+
+  alpine:
+    desc: Run alpine container
+    cmds:
+      - kubectl run -it alpine --image alpine:3.15.4
+
+  dnsutils:
+    desc: Run DNSUtils pod
+    cmds:
+      - kubectl run -it dnsutils --image gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
+
+  what-dockerhub:
+    desc: What dockerhub images are running in my cluster
+    cmds:
+      - kubectl get pods --all-namespaces -o=jsonpath="{range .items[*]}{'\n'}{range .spec.containers[*]}{.image}{'\n'}{end}{end}" | sort | uniq | grep -Ev 'quay|gcr|ghcr|ecr|us-docker' | grep -Ev 'bitnami|rook|intel|grafana' |  sed -e 's/docker\.io\///g' | sort | uniq
+
+  debug-networking:
+    desc: Create a netshoot container for debugging
+    cmds:
+      - kubectl run tmp-shell --rm -i --tty --image docker.io/nicolaka/netshoot:latest {{.CLI_ARGS}}
+
+  debug-volume:
+    desc: Attach a volume to a container for debugging, ex. VOLUME=zigbee2mqtt-config-v1 NAMESPACE=home task debug-volume
+    interactive: true
+    cmds:
+      - defer: kubectl -n ${NAMESPACE} delete pod debug-${VOLUME}
+      - |
+        cat <<EOF | kubectl apply -f -
+        kind: Pod
+        apiVersion: v1
+        metadata:
+          name: "debug-${VOLUME}"
+          namespace: "${NAMESPACE}"
+          labels:
+            volume: "${VOLUME}"
+        spec:
+          containers:
+            - name: debug
+              image: docker.io/library/alpine:3.20@sha256:0a4eaa0eecf5f8c050e5bba433f58c052be7587ee8af3e8b3910ef9ab5fbe9f5
+              command: ["/bin/sh"]
+              tty: true
+              lifecycle:
+                postStart:
+                  exec:
+                    command:
+                      - /bin/sh
+                      - -c
+                      - apk add --no-cache curl nano
+              volumeMounts:
+                - name: data
+                  mountPath: /data
+                - name: backups
+                  mountPath: /mnt/backups
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: "${VOLUME}"
+            - name: backups
+              nfs:
+                server: "hades"
+                path: "/volume1/K8S/main"
+        EOF
+      - kubectl -n $NAMESPACE wait --for=condition=ready pod -l volume=$VOLUME
+      - kubectl -n $NAMESPACE exec (kubectl get pod -n $NAMESPACE -l volume=$VOLUME -o name) -it debug -- /bin/sh
+
+  restart-loki:
+    desc: Restart loki deployment
+    cmds:
+      - kubectl --context main rollout restart deployment -n monitoring loki-gateway
+      - kubectl --context main rollout restart deployment -n monitoring loki-read
+      - kubectl --context main rollout restart statefulset -n monitoring loki-backend
+      - kubectl --context main rollout restart statefulset -n monitoring loki-chunks-cache
+      - kubectl --context main rollout restart statefulset -n monitoring loki-results-cache
+      - kubectl --context main rollout restart statefulset -n monitoring loki-write

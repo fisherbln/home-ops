@@ -17,6 +17,9 @@ includes:
   k8s:
     taskfile: .taskfiles/k8s
     dir: .taskfiles/k8s
+  kubernetes: 
+    dir: .taskfiles/kubernetes
+    taskfile: .taskfiles/kubernetes
   externalsecrets:
     taskfile: .taskfiles/externalsecrets
     dir: .taskfiles/externalsecrets
