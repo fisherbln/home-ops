@@ -93,3 +93,11 @@ spec:
     persistence:
       config:
         existingClaim: prowlarr-config
+        advancedMounts:
+          main:
+            main:
+              - path: /app/config
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
