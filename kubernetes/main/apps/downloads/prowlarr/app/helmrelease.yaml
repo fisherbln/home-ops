@@ -94,10 +94,10 @@ spec:
       config:
         existingClaim: prowlarr-config
         advancedMounts:
-          main:
-            main:
+          prowlarr:
+            app:
               - path: /app/config
       logs:
         type: emptyDir
         globalMounts:
-          - path: /app/config/logs
+          - path: /app/config/logsmain
