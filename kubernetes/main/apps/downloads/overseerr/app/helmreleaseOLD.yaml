@@ -38,6 +38,7 @@ spec:
             env:
               LOG_LEVEL: "info"
               PORT: &port 80
+
             probes:
               liveness:
                 enabled: true
@@ -83,4 +84,13 @@ spec:
 
     persistence:
       config:
+        enabled: true
         existingClaim: overseerr-config
+        advancedMounts:
+          main:
+            main:
+              - path: /app/config
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
