@@ -3,20 +3,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - frigate-pvc.yaml
-  - frigate-secrets.yaml
+  #- ./frigate-pvc.yaml
+  - ./externalsecret.yaml
   - helm-release.yaml
   - ../../../../templates/volsync
 configMapGenerator:
   - name: frigate-configmap
     files:
       - config.yaml=./config/config.yaml
-  - name: frigate-loki-rules
-    files:
-      - frigate.yaml=./config/lokirule.yaml
-    options:
-      labels:
-        loki_rule: "true"
+  #- name: frigate-loki-rules
+  #  files:
+  #    - frigate.yaml=./config/lokirule.yaml
+  #  options:
+  #    labels:
+  #      loki_rule: "true"
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

@@ -34,15 +34,23 @@ spec:
       namespace: system
   values:
     controllers:
-      main:
+      frigate:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-iot",
+                "namespace": "network",
+                "ips": ["10.28.20.205/24"],
+                "mac": "6a:0f:16:aa:4e:28"
+              }]
           nodeSelector:
             google.feature.node.kubernetes.io/coral: "true"
             intel.feature.node.kubernetes.io/gpu: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/blakeblackshear/frigate
               tag: 0.14.0@sha256:416fa4cc44fd1e40abf522ddb01defa83f2fefeca2337425c1fe1574b7f4bb14
@@ -88,35 +96,33 @@ spec:
                 gpu.intel.com/i915: "1"
 
     service:
-      main:
-        controller: main
+      app:
+        controller: frigate
         ports:
           http:
             port: 5000
           rtsp:
-            enabled: true
             port: 8554
 
     ingress:
-      main:
-        enabled: true
-        className: internal
+      app:
+        className: "internal-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ingress-int.nickeson.net
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_NAME}"
+          - host: frigate.nickeson.net
             paths:
               - path: /
-                pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: app
                   port: http
 
     persistence:
       config:
-        enabled: true
-        existingClaim: "${VOLSYNC_CLAIM}"
+        existingClaim: frigate-config
         advancedMounts:
-          main:
-            main:
+          frigate:
+            app:
               - path: /config
       config-file:
         enabled: true
@@ -125,10 +131,11 @@ spec:
         globalMounts:
           - path: /config/new-config.yml
             subPath: config.yaml
-            readOnly: true
+            #readOnly: true
       media:
-        enabled: true
-        existingClaim: frigate-nfs
+        type: nfs
+        server: pve1.nickeson.net
+        path: /eros/nvr
         globalMounts:
           - path: /media
       cache:
@@ -138,10 +145,10 @@ spec:
         sizeLimit: 4Gi
         globalMounts:
           - path: /dev/shm
-      usb:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/bus/usb
-        hostPathType: Directory
-        globalMounts:
-          - path: /dev/bus/usb
+      #usb:
+      #  enabled: true
+      #  type: hostPath
+      #  hostPath: /dev/bus/usb
+      #  hostPathType: Directory
+      #  globalMounts:
+      #    - path: /dev/bus/usb
