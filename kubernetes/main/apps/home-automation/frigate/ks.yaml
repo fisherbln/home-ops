@@ -26,7 +26,7 @@ spec:
     substitute:
       APP: *appname
       APP_UID: "2000"
-      APP_GID: "2000"
+      APP_GID: "1800"
       VOLSYNC_CLAIM: frigate-config
       VOLSYNC_CAPACITY: 5Gi
   wait: false
