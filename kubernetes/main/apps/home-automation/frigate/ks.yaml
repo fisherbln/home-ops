@@ -18,6 +18,7 @@ spec:
     name: home-ops-kubernetes
   dependsOn:
     - name: multus-config
+    - name: intel-device-plugins-gpu
     - name: rook-ceph-cluster
     - name: volsync
     - name: external-secrets-stores
