@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   #- ./frigate-pvc.yaml
   - ./externalsecret.yaml
-  - helm-release.yaml
+  - ./helmrelease.yaml
   - ../../../../templates/volsync
 configMapGenerator:
   - name: frigate-configmap
