@@ -36,13 +36,6 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      #- deviceSelector:
-      #    hardwareAddr: e8:ff:1e:d2:b0:be
-      #    driver: igc
-      #  mtu: 1500
-      #  dhcp: true
-      #  vip:
-      #    ip: ${clusterEndpointIP}
       - interface: bond0
         bond:
           mode: active-backup
@@ -73,14 +66,6 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      #- deviceSelector:
-      #    #hardwareAddr: BC:24:11:0E:02:A9
-      #    #driver: virtio
-      #    hardwareAddr: 58:47:ca:74:f2:59
-      #  mtu: 1500
-      #  dhcp: true
-      #  vip:
-      #    ip: ${clusterEndpointIP}
       - interface: bond0
         bond:
           mode: active-backup
@@ -110,13 +95,6 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
-      #- deviceSelector:
-      #    hardwareAddr: 58:47:ca:74:ff:71
-      #    #driver: virtio
-      #  mtu: 1500
-      #  dhcp: true
-      #  vip:
-      #    ip: ${clusterEndpointIP}
       - interface: bond0
         bond:
           mode: active-backup
@@ -144,6 +122,7 @@ controlPlane:
         officialExtensions:
           - siderolabs/intel-ucode
           - siderolabs/i915-ucode
+          - siderolabs/gasket-driver #google coral pci driver
 
   patches:
     # Custom Talos installer patch
