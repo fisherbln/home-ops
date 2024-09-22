@@ -10,7 +10,7 @@ resources:
 configMapGenerator:
   - name: frigate-configmap
     files:
-      - config.yaml=./config/config.yaml
+      - config.yml=./config/config.yml
   #- name: frigate-loki-rules
   #  files:
   #    - frigate.yaml=./config/lokirule.yaml
