@@ -48,17 +48,17 @@ spec:
               repository: ghcr.io/blakeblackshear/frigate
               tag: 0.14.0@sha256:416fa4cc44fd1e40abf522ddb01defa83f2fefeca2337425c1fe1574b7f4bb14
             env:
-              #TZ: ${CONFIG_TIMEZONE}
-              FRIGATE_MQTT_USERNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: frigate-secret
-                    key: MOSQUITTO_USERNAME
-              FRIGATE_MQTT_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: frigate-secret
-                    key: MOSQUITTO_PASSWORD
+              TZ: "America/Chicago"
+              #FRIGATE_MQTT_USERNAME:
+              #  valueFrom:
+              #    secretKeyRef:
+              #      name: frigate-secret
+              #      key: MOSQUITTO_USERNAME
+              #FRIGATE_MQTT_PASSWORD:
+              #  valueFrom:
+              #    secretKeyRef:
+              #      name: frigate-secret
+              #      key: MOSQUITTO_PASSWORD
             envFrom:
               - secretRef:
                   name: frigate-secret
@@ -124,7 +124,7 @@ spec:
         globalMounts:
           - path: /config/config.yml
             subPath: config.yml
-            #readOnly: true
+            readOnly: true
       media:
         type: nfs
         server: pve1.nickeson.net
@@ -138,10 +138,7 @@ spec:
         sizeLimit: 4Gi
         globalMounts:
           - path: /dev/shm
-      pci:
-        enabled: true
+      coral:
         type: hostPath
-        hostPath: /dev
-        hostPathType: Directory
-        globalMounts:
-          - path: /dev
+        hostPath: /dev/apex_0
+        hostPathType: CharDevice

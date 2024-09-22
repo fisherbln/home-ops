@@ -6,3 +6,4 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_NAME: main
+  CONFIG_TIMEZONE: "America/Chicago"
