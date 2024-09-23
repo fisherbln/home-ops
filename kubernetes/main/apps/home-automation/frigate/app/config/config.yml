@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://frigate.zinn.ca/api/config/schema.json
 logger:
-  default: info
+  default: debug #info
   # logs:
   #   frigate.record: debug
 
@@ -61,6 +61,8 @@ snapshots:
 #      threshold: 0.7
 
 go2rtc:
+  log:
+    level: debug
   streams:
     kira:
       - rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=0&authbasic=64
