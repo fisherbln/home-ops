@@ -125,13 +125,13 @@ spec:
         path: /eros/nvr
         globalMounts:
           - path: /media
-      cache:
-        enabled: true
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 4Gi
-        globalMounts:
-          - path: /dev/shm
+      #cache:
+      #  enabled: true
+      #  type: emptyDir
+      #  medium: Memory
+      #  sizeLimit: 4Gi
+      #  globalMounts:
+      #    - path: /dev/shm
       coral:
         type: hostPath
         hostPath: /dev/apex_0

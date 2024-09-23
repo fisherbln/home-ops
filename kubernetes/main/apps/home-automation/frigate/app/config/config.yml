@@ -72,14 +72,14 @@ cameras:
         - path: rtsp://localhost:8554/kira
           roles:
             - record
-        - path:
-            rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
-          roles:
-            - detect
-    detect:
-      width: 640
-      height: 480
-      fps: 5
+        #- path:
+        #    rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
+        #  roles:
+        #    - detect
+    #detect:
+    #  width: 640
+    #  height: 480
+    #  fps: 5
     record:
       enabled: true
       retain:
