@@ -87,6 +87,9 @@ spec:
           rtsp:
             enabled: true
             port: 8554
+          go2rtc:
+            enabled: true
+            port: &api-port 1984
 
     ingress:
       app:
