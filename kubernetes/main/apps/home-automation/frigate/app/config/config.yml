@@ -63,7 +63,7 @@ snapshots:
 go2rtc:
   streams:
     kira:
-      - rtsp://viewer:{CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=0&authbasic=64
+      - rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=0&authbasic=64
 
 cameras:
   kira:
@@ -73,7 +73,7 @@ cameras:
           roles:
             - record
         - path:
-            rtsp://viewer:{CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
+            rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
           roles:
             - detect
     detect:
