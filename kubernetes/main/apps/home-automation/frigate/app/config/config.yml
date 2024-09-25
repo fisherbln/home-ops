@@ -19,11 +19,11 @@ mqtt:
 database:
   path: /config/frigate.db
 
-#detectors:
-#  coral:
-#    type: edgetpu
-#    device: pci
-#    #device: usb
+detectors:
+  coral:
+    type: edgetpu
+    device: pci
+    #device: usb
 
 #ffmpeg:
 #  global_args: [-hide_banner, -loglevel, warning]
@@ -35,12 +35,12 @@ database:
 #  #  record: preset-record-ubiquiti
 #  #  # rtmp: preset-rtmp-ubiquiti
 
-#snapshots:
-#  enabled: true
-#  timestamp: false
-#  bounding_box: true
-#  retain:
-#    default: 20
+snapshots:
+  enabled: true
+  timestamp: false
+  bounding_box: true
+  retain:
+    default: 20
 
 #record:
 #  enabled: true
@@ -74,14 +74,14 @@ cameras:
         - path: rtsp://localhost:8554/kira
           roles:
             - record
-#        #- path:
-#        #    rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
-#        #  roles:
-#        #    - detect
-#    #detect:
-#    #  width: 640
-#    #  height: 480
-#    #  fps: 5
+        - path:
+            rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=1&authbasic=64
+          roles:
+            - detect
+    detect:
+      width: 640
+      height: 480
+      fps: 5
     record:
       enabled: true
       retain:
