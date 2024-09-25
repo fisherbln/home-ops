@@ -64,8 +64,8 @@ cameras:
         retain:
           default: 7
           mode: active_objects
-      onvif:
-        host: 10.28.20.31
-        port: 80
-        user: admin
-        password: '{FRIGATE_CAMERA_PASSWORD}'
+    onvif:
+      host: 10.28.20.31
+      port: 80
+      user: admin
+      password: '{FRIGATE_CAMERA_PASSWORD}'
