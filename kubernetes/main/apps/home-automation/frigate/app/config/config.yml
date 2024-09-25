@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://frigate.zinn.ca/api/config/schema.json
 logger:
-  default: debug #info
+  default: info
   # logs:
   #   frigate.record: debug
 
@@ -25,44 +25,19 @@ detectors:
     device: pci
     #device: usb
 
-#ffmpeg:
-#  global_args: [-hide_banner, -loglevel, warning]
-#  #hwaccel_args: preset-intel-qsv-h264
-#  hwaccel_args: preset-vaapi
-#  output_args:
-#    record: preset-record-generic-audio-aac
-#  #output_args:
-#  #  record: preset-record-ubiquiti
-#  #  # rtmp: preset-rtmp-ubiquiti
-
-snapshots:
-  enabled: true
-  timestamp: false
-  bounding_box: true
-  retain:
-    default: 20
-
-#record:
-#  enabled: true
-#  retain:
-#    days: 20viewer
-#    mode: all
-#  events:
-#    retain:
-#      default: 20
-#      mode: active_objects
-
-#objects:
-#  track: [person, dog, cat]
-#  filters:
-#    person:
-#      min_area: 5000
-#      max_area: 100000
-#      threshold: 0.7
+ffmpeg:
+  global_args: [-hide_banner, -loglevel, warning]
+  #hwaccel_args: preset-intel-qsv-h264
+  hwaccel_args: preset-vaapi
+  output_args:
+    record: preset-record-generic-audio-aac
+  #output_args:
+  #  record: preset-record-ubiquiti
+  #  # rtmp: preset-rtmp-ubiquiti
 
 go2rtc:
   log:
-    level: debug
+    level: info
   streams:
     kira:
       - rtsp://viewer:{FRIGATE_CAMERA_PASSWORD}@10.28.20.31/cam/realmonitor?channel=1&subtype=0&authbasic=64
