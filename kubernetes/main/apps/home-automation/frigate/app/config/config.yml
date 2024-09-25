@@ -27,13 +27,11 @@ detectors:
 
 ffmpeg:
   global_args: [-hide_banner, -loglevel, warning]
-  hwaccel_args: preset-intel-qsv-h264
-  #hwaccel_args: preset-vaapi
+  #hwaccel_args: preset-intel-qsv-h264
+  hwaccel_args: preset-vaapi
   output_args:
-    record: preset-record-generic-audio-aac
-  #output_args:
-  #  record: preset-record-ubiquiti
-  #  # rtmp: preset-rtmp-ubiquiti
+    #record: preset-record-generic-audio-aac
+    record: preset-record-generic-audio-copy
 
 go2rtc:
   log:
@@ -66,3 +64,8 @@ cameras:
         retain:
           default: 7
           mode: active_objects
+      onvif:
+        host: 10.28.20.31
+        port: 80
+        user: admin
+        password: '{FRIGATE_CAMERA_PASSWORD}'
