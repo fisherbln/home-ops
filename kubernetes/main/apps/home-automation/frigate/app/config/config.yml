@@ -30,8 +30,8 @@ ffmpeg:
   #hwaccel_args: preset-intel-qsv-h264
   hwaccel_args: preset-vaapi
   output_args:
-    #record: preset-record-generic-audio-aac
-    record: preset-record-generic-audio-copy
+    record: preset-record-generic-audio-aac
+    #record: preset-record-generic-audio-copy
 
 go2rtc:
   log:
