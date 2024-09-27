@@ -86,7 +86,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: ingress-ext.nickeson.net
         className: "external-nginx"
         hosts:
-          - host: gh-safe-settings.bjw-s.dev
+          - host: gh-safe-settings.nickeson.net
             paths:
               - path: /
                 service:
