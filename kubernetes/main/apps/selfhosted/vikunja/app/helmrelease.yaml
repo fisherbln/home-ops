@@ -41,7 +41,7 @@ spec:
               VIKUNJA_SERVICE_ENABLECALDAV: false
               VIKUNJA_SERVICE_ENABLELINKSHARING: false
               VIKUNJA_SERVICE_ENABLEREGISTRATION: false
-              VIKUNJA_SERVICE_PUBLICURL: https://vikunja.bjw-s.dev/
+              VIKUNJA_SERVICE_PUBLICURL: https://vikunja.nickeson.net/
             probes:
               liveness:
                 enabled: true
@@ -71,9 +71,9 @@ spec:
       app:
         className: "external-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress-ext.bjw-s.dev
+          external-dns.alpha.kubernetes.io/target: ingress-ext.nickeson.net
         hosts:
-          - host: vikunja.bjw-s.dev
+          - host: vikunja.nickeson.net
             paths:
               - path: /
                 service:
