@@ -1,7 +1,7 @@
 ---
 clusterName: main
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.7.6
+talosVersion: v1.8.0
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.3
 endpoint: https://main.${NET_DOMAIN_NAME}:6443
@@ -147,13 +147,14 @@ controlPlane:
         network:
           disableSearchDomain: true
 
-    # Configure NTP
-    #- &ntpPatch |-
-    #  machine:
-    #    time:
-    #      disabled: false
-    #      servers:
-    #        - 10.28.1.1
+    # Disable Host DNS
+    - |-
+      machine:
+        features:
+          hostDNS:
+            enabled: true
+            resolveMemberNames: true
+            forwardKubeDNSToHost: false
 
     # Enable KubePrism
     - &kubePrismPatch |-
@@ -163,15 +164,21 @@ controlPlane:
             enabled: true
             port: 7445
 
-    # Configure kubelet
-    - &kubeletPatch |-
-      machine:
-        kubelet:
-          extraArgs:
-            rotate-server-certificates: true
-          nodeIP:
-            validSubnets:
-                - 10.28.28.0/24
+    # Cluster configuration
+    - |-
+      cluster:
+        allowSchedulingOnMasters: true
+        proxy:
+          disabled: true
+        coreDNS:
+            disabled: true
+        discovery:
+          enabled: true
+          registries:
+            kubernetes:
+              disabled: false
+            service:
+              disabled: true
 
     # ETCD configuration
     - |-

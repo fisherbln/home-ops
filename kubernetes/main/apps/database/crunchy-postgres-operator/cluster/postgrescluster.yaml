@@ -75,6 +75,11 @@ spec:
         - miniflux
       password:
         type: AlphaNumeric
+    - name: piped
+      databases:
+        - piped
+      password:
+        type: AlphaNumeric
     - name: wallabag
       databases:
         - wallabag
