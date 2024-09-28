@@ -213,7 +213,7 @@ tasks:
       TARGET_TALOS_VERSION:
         sh: yq -r ".talosVersion" {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/talconfig.yaml
       nodes:
-        sh: talosctl --context {{.cluster}} config info --output json | jq '.nodes[]' | xargs -L 1 dig -x | awk '{print $5}' | sed -e 's/.$//'
+        sh: talosctl --context {{.cluster}} config info --output json | jq '.nodes[]' | xargs -L 1 dig -x | awk '{print $5}' | grep nickeson.net |sed -e 's/.$//'
     requires:
       vars:
         - cluster
