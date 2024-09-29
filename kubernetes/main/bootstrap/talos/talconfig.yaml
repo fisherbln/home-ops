@@ -4,8 +4,8 @@ clusterName: main
 talosVersion: v1.8.0
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.31.1
-#endpoint: https://main.${NET_DOMAIN_NAME}:6443
-endpoint: https://${clusterEndpointIP}:6443
+endpoint: https://main.${NET_DOMAIN_NAME}:6443
+#endpoint: https://${clusterEndpointIP}:6443
 
 cniConfig:
   name: none
@@ -102,8 +102,8 @@ nodes:
             - hardwareAddr: 58:47:ca:74:ff:71
               #driver: igc
         dhcp: true
-        vip:
-          ip: ${clusterEndpointIP}
+        #vip:
+        #  ip: ${clusterEndpointIP}
       - interface: bond1
         bond:
           mode: active-backup
