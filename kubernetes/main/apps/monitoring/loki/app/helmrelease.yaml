@@ -40,7 +40,7 @@ spec:
         chunk_encoding: snappy
 
       commonConfig:
-        replication_factor: 2
+        replication_factor: 1
 
       limits_config:
         ingestion_burst_size_mb: 128
@@ -94,7 +94,7 @@ spec:
           insecure: true
 
     gateway:
-      replicas: 2
+      replicas: 1
       enabled: true
       image:
         registry: ghcr.io
@@ -127,16 +127,16 @@ spec:
                 pathType: Prefix
         tls: []
     write:
-      replicas: 2
+      replicas: 1
       persistence:
         storageClass: openebs-hostpath
         size: 20Gi
 
     read:
-      replicas: 2
+      replicas: 1
 
     backend:
-      replicas: 2
+      replicas: 1
       persistence:
         storageClass: openebs-hostpath
         size: 20Gi

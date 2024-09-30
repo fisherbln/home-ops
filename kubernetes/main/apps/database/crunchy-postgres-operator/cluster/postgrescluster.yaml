@@ -24,7 +24,8 @@ spec:
       synchronous_mode: true
       postgresql:
         max_wal_size: 5GB
-        synchronous_commit: "on"
+        #synchronous_commit: "on"
+        synchronous_commit: "off"
         pg_hba:
           - hostnossl all all 10.244.0.0/16 md5 # Needed because dbman does not support SSL yet
           - hostssl all all all md5
@@ -34,7 +35,7 @@ spec:
       metadata:
         labels:
           app.kubernetes.io/name: crunchy-postgres
-      replicas: &replica 3
+      replicas: &replica 1
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:

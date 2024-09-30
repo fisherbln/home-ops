@@ -18,7 +18,8 @@ spec:
     name: home-ops-kubernetes
   wait: true
   dependsOn:
-    - name: rook-ceph-cluster
+    #- name: rook-ceph-cluster
+    - name: openebs
     #- name: generic-device-plugin
     - name: volsync
     - name: external-secrets-stores

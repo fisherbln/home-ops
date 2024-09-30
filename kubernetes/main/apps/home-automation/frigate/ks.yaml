@@ -19,7 +19,8 @@ spec:
   dependsOn:
     - name: multus-config
     - name: intel-device-plugins-gpu
-    - name: rook-ceph-cluster
+    #- name: rook-ceph-cluster
+    - name: openebs
     - name: volsync
     - name: external-secrets-stores
   postBuild:
