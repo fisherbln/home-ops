@@ -1,11 +1,13 @@
 ---
 clusterName: main
+#endpoint: https://main.${NET_DOMAIN_NAME}:6443
+#endpoint: https://${clusterEndpointIP}:6443
+endpoint: https://felix.${NET_DOMAIN_NAME}:6443
+
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
 talosVersion: v1.8.0
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.31.1
-endpoint: https://main.${NET_DOMAIN_NAME}:6443
-#endpoint: https://${clusterEndpointIP}:6443
 
 cniConfig:
   name: none
@@ -14,16 +16,9 @@ additionalApiServerCertSans: &san
   #- ${clusterEndpointIP}
   - 10.28.28.63
   - main.${NET_DOMAIN_NAME}
+  - felix.${NET_DOMAIN_NAME}
   - 127.0.0.1
-
 additionalMachineCertSans: *san
-
-#domain: cluster.local
-
-#clusterSvcNets:
-#  - ${clusterServiceNets}
-#clusterPodNets:
-#  - ${clusterPodNets}
 
 nodes:
   #- hostname: delta.${NET_DOMAIN_NAME}
@@ -113,6 +108,21 @@ nodes:
               driver: igc
         mtu: 1500
         dhcp: true
+        dhcpOptions:
+          routeMetric: 4096
+    patches:
+    # Extra SSD to mount
+      - &kubelet_extra_mounts |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/mnt/sata
+                type: bind
+                source: /var/mnt/sata
+                options:
+                  - rbind
+                  - rshared
+                  - rw
 
 controlPlane:
   schematic:
@@ -128,21 +138,6 @@ controlPlane:
           #- siderolabs/mei
 
   patches:
-    # Custom Talos installer patch
-    #- &customTalosPatch |-
-    #  machine:
-    #    install:
-    #      extraKernelArgs:
-    #        - talos.logging.kernel=udp://${CONFIG_MAIN_SVC_VECTOR_AGGREGATOR_ADDR}:6001/
-
-    # Enable logging
-    #- &loggingPatch |-
-    #  machine:
-    #    logging:
-    #      destinations:
-    #        - endpoint: udp://${CONFIG_MAIN_SVC_VECTOR_AGGREGATOR_ADDR}:6002/
-    #          format: json_lines
-
     # Disable search domain everywhere
     - &disableSearchDomainPatch |-
       machine:
@@ -210,9 +205,7 @@ controlPlane:
       machine:
         kubelet:
           extraArgs:
-            rotate-server-certificates: "true"
-          extraConfig:
-            maxPods: 300
+            rotate-server-certificates: true
           nodeIP:
             validSubnets:
                 - 10.28.28.0/24
@@ -248,18 +241,7 @@ controlPlane:
           fs.inotify.max_user_instances: "8192"
           fs.inotify.max_user_watches: "524288"
 
-    # Extra SSD to mount
-    - &kubelet_extra_mounts |-
-      machine:
-        kubelet:
-          extraMounts:
-            - destination: /var/mnt/sata
-              type: bind
-              source: /var/mnt/sata
-              options:
-                - rbind
-                - rshared
-                - rw
+    
     
     # Various udev rules
     - |-
