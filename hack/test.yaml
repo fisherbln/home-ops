@@ -9,7 +9,7 @@ spec:
   # nodeName: k8s-5
   containers:
     - name: shell
-      image: ubuntu
+      image: ghcr.io/aarnaud/talos-debug-tools:latest-6.6.29
       tty: true
       stdin: true
       securityContext:

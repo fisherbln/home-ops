@@ -135,6 +135,7 @@ controlPlane:
           - siderolabs/i915-ucode
           - siderolabs/mei
           - siderolabs/gasket-driver #google coral pci driver
+          - siderolabs/zfs
           #- siderolabs/mei
 
   patches:
