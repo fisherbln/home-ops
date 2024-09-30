@@ -11,7 +11,8 @@ cniConfig:
   name: none
 
 additionalApiServerCertSans: &san
-  - ${clusterEndpointIP}
+  #- ${clusterEndpointIP}
+  - 10.28.28.63
   - main.${NET_DOMAIN_NAME}
   - 127.0.0.1
 
@@ -187,8 +188,6 @@ controlPlane:
         etcd:
           advertisedSubnets:
             - 10.28.28.0/24
-          extraArgs:
-            listen-metrics-urls: http://0.0.0.0:2381
 
     # Disable default API server admission plugins.
     - |-
