@@ -205,6 +205,18 @@ controlPlane:
               - os:admin
             allowedKubernetesNamespaces:
               - system-upgrade
+    
+    # Kubelet configuration
+    - |-
+      machine:
+        kubelet:
+          extraArgs:
+            rotate-server-certificates: "true"
+          extraConfig:
+            maxPods: 300
+          nodeIP:
+            validSubnets:
+                - 10.28.28.0/24
 
     # Configure containerd
     - &containerdPatch |-
