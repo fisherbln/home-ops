@@ -16,7 +16,7 @@ spec:
     #storageClassName: "${VOLSYNC_STORAGECLASS:-ceph-block}"
     storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-hostpath}"
     #volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-ceph-blockpool}"
-    VolumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-blockpool}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-blockpool}"
     moverSecurityContext:
       runAsUser: ${APP_UID:-2000}
       runAsGroup: ${APP_GID:-2000}
