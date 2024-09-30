@@ -19,5 +19,4 @@ spec:
   wait: true
   dependsOn:
     - name: external-secrets-stores
-    #- name: rook-ceph-cluster
-    - name: openebs
+    - name: rook-ceph-cluster
