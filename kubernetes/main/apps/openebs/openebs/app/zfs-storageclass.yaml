@@ -6,7 +6,7 @@ metadata:
 allowVolumeExpansion: true
 parameters:
   fstype: zfs
-  poolname: zfspv-pool
+  poolname: "zfspv-pool"
   recordsize: 128k
   compression: zstd
   dedup: off
