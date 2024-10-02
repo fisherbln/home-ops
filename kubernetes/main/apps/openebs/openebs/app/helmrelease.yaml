@@ -55,7 +55,7 @@ spec:
           enabled: true
         csi:
           volumeSnapshots:
-            enabled: false
+            enabled: true
 
     lvm-localpv:
       enabled: false
