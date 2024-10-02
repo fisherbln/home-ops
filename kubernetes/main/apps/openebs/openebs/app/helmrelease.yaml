@@ -47,14 +47,15 @@ spec:
 
     zfs-localpv:
       enabled: true
-      #zfsNode:
-      #  encrKeysDir: /var/openebs/keys
+      zfsNode:
+        # Needed for Talos. Default location is /home/keys which is read-only in Talos.
+        encrKeysDir: /var/openebs/keys
       crds:
         zfsLocalPv:
           enabled: true
         csi:
           volumeSnapshots:
-            enabled: true
+            enabled: false
 
     lvm-localpv:
       enabled: false
