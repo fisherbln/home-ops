@@ -19,7 +19,8 @@ spec:
   wait: false
   dependsOn:
     - name: external-secrets-stores
-    - name: rook-ceph-cluster
+    #- name: rook-ceph-cluster
+    - name: openebs
     - name: crunchy-postgres-operator-cluster
     - name: crunchy-postgres-operator-secretstore
     - name: qbittorrent

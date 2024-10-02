@@ -19,7 +19,8 @@ spec:
   wait: false
   dependsOn:
     - name: multus-config
-    - name: rook-ceph-cluster
+    #- name: rook-ceph-cluster
+    - name: openebs
     - name: volsync
     - name: external-secrets-stores
   postBuild:

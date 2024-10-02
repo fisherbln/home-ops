@@ -82,6 +82,8 @@ nodes:
   - hostname: felix.${NET_DOMAIN_NAME}
     ipAddress: 10.28.28.63
     controlPlane: true
+    kernelModules:
+      - name: zfs
     installDiskSelector:
       serial: "2231402813ED"
   #  nameservers: 
